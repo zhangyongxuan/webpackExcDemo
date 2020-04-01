@@ -9,5 +9,9 @@ module.exports = [
     {
         path:'/home',
         component:'Home'
-    }
+    },
+    {
+        path:'/news',
+        component:'News'
+    },
 ]

@@ -10,6 +10,7 @@
  
  class Home extends Component {
      render() {
+         console.log(123);
          return (
              <div>
                  home

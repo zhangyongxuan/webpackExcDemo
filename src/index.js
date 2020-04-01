@@ -12,8 +12,9 @@ import routes from './router';
 
 
 const app = dva({
-  history: createBrowserHistory()
+  history: createBrowserHistory({
+    basename:'/app'
+  })
 });
 app.router(routes);
-
 app.start('#root');

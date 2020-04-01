@@ -7,26 +7,30 @@
  */
 
 import React from 'react';
-import { Router, Switch, Route,Redirect } from 'dva/router';
+import { routerRedux, Switch, Route,Redirect } from 'dva/router';
 import routes from '../config/routes';
+
+
+const { ConnectedRouter } = routerRedux;
 
 function getRoutes(routes) {
     if (routes.components) {
         getRoutes(routes.components);
     } else {
         return routes.map(item => {
-            return <Route path={item.path} key={item.path} component={require(`./routes/${item.component}`)} />;
+            return <Route path={item.path} key={item.path} component={require(`./routes/${item.component}`).default} />;
         })
     }
 }
 
 
 export default function ({ history }) {
-    return (<Router history={history}>
+    return (<ConnectedRouter history={history}>
         <Switch>
             {
                 getRoutes(routes)
             }
+            <Redirect form='/' to='home' />
         </Switch>
-    </Router>)
+    </ConnectedRouter>)
 }

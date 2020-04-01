@@ -8,7 +8,6 @@
 
 
 const path = require('path');
-const paths = require('./paths');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -38,11 +37,11 @@ module.exports = {
             context: 'app'
         }),
         new CleanWebpackPlugin({
-            root: paths.appPath, // 根目录
+            root: path.resolve(__dirname,'../') , // 根目录
             verbose: true, // 开启在控制台输出信息
             dry: false, // 启用删除文件
         }),
-        new WebpackBar({ name: '✈', color: '#29BECE' }),
+        new WebpackBar({ name: '✈ 生成DLL文件', color: 'blue' }),
     ],
 
     module: {

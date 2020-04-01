@@ -36,15 +36,17 @@ module.exports = function (mode) {
                 template: path.resolve(__dirname, '../public/index.html')
             }),
             new webpack.DllReferencePlugin({
+                context:'/app',
                 manifest: !isDev ? require('../dist/vendor-manifest.json') : require('../static/vendor-manifest.json')
             }),
-            new WebpackBar({ name: '✈', color: '#29BECE' }),
+            new WebpackBar({ name: '✈ 打包中。。。', color: 'red' }),
             new webpack.NamedModulesPlugin(), // 用于启动 HMR 时可以显示模块的相对路径
             new webpack.HotModuleReplacementPlugin(), // Hot Module Replacement 的插件
 
         ])),
         module: {
             rules: [{ test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }, { test: /\.jsx$/, use: 'babel-loader', exclude: /node_modules/ }]
-        }
+        },
+        
     }
 }
